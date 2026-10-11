@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QSS / Cleanse — Qu'est-ce que ça enlève ?</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+<h1>QSS / Cleanse — LoL</h1>
+<p class="sub">Quicksilver Sash &amp; Cleanse : sur quel sort ça marche ?</p>
+<div class="rules">
+<div class="rule qss"><strong>QSS</strong> enlève tout <strong>sauf</strong> Airborne (knockup / pull), Suppression, Stase. N'enlève <strong>pas</strong> Ignite / Exhaust.</div>
+<div class="rule cl"><strong>Cleanse</strong> enlève pareil + <strong>Ignite / Exhaust</strong>. N'enlève pas Airborne, Suppression, Stase. Ne sort <strong>pas</strong> de Mordekaiser R.</div>
+</div>
+</header>
+
+<main>
+<div class="toolbar">
+<input id="q" type="search" placeholder="Chercher champion ou sort… ex: ashe, malzahar r, root" autocomplete="off">
+<div class="btns">
+<button data-f="all" class="on">Tous</button>
+<button data-f="qss">QSS ✓</button>
+<button data-f="cleanse">Cleanse ✓</button>
+<button data-f="none">Ni l'un ni l'autre ✗</button>
+</div>
+<select id="cc" aria-label="Filtrer par type de contrôle">
+<option value="">Tous les contrôles</option>
+</select>
+</div>
+
+<p id="count"></p>
+<div id="list"></div>
+
+<section class="legend">
+<h2>Légende rapide</h2>
+<ul>
+<li><b>✓</b> = ça enlève. <b>✗</b> = ça n'enlève pas.</li>
+<li><b>Airborne</b> = knockup, knockback, pull, suspension (Yasuo, Alistar, Blitz, Janna…). Rien ne l'enlève.</li>
+<li><b>Suppression</b> = Malzahar R, Warwick R, Skarner R, Urgot R, Tahm W. Rien ne l'enlève.</li>
+<li><b>Stase</b> = Zhonya, Bard R, Lissandra R sur soi. Inenlevable.</li>
+<li><b>Spécial</b> = Mordekaiser R, Illaoi E : QSS oui, Cleanse non.</li>
+<li><b>Summoner</b> = Ignite, Exhaust : Cleanse oui, QSS non.</li>
+</ul>
+</section>
+</main>
+
+<footer><p>Données simplifiées patch récent. En cas de doute : airborne / suppression / stase = non.</p></footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
