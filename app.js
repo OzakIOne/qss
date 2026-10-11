@@ -21,18 +21,19 @@ function render(){
   const nq = norm(q.value.trim());
   const ncc = cc.value;
   const out = SPELLS.filter(s=>{
-    const [ch, key, name, type, qss, cl] = s;
+    const [ch, key, name, type, qss, cl, mik] = s;
     if (ncc && type !== ncc) return false;
     if (filter==="qss" && !qss) return false;
     if (filter==="cleanse" && !cl) return false;
-    if (filter==="none" && (qss || cl)) return false;
+    if (filter==="mikael" && !mik) return false;
+    if (filter==="none" && (qss || cl || mik)) return false;
     if (!nq) return true;
     return norm(`${ch} ${key} ${name} ${type}`).includes(nq);
   });
   count.textContent = out.length + " sort(s)";
   list.innerHTML = out.map(s=>{
-    const [ch,key,name,type,qss,cl,note] = s;
-    return `<div class="card"><div><div class="t">${ch} ${key} — ${name}</div><div class="s">${note||""}</div><div class="cc">${type}</div></div><div class="badges"><span class="b ${qss?"y":"n"}">QSS ${qss?"✓":"✗"}</span><span class="b ${cl?"y":"n"}">Cleanse ${cl?"✓":"✗"}</span></div></div>`;
+    const [ch,key,name,type,qss,cl,mik,note] = s;
+    return `<div class="card"><div><div class="t">${ch} ${key} — ${name}</div><div class="s">${note||""}</div><div class="cc">${type}</div></div><div class="badges"><span class="b ${qss?"y":"n"}">QSS ${qss?"✓":"✗"}</span><span class="b ${cl?"y":"n"}">Cleanse ${cl?"✓":"✗"}</span><span class="b ${mik?"y":"n"}">Mikael ${mik?"✓":"✗"}</span></div></div>`;
   }).join("") || "<p>Aucun résultat.</p>";
 }
 render();
