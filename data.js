@@ -108,7 +108,7 @@ const SPELLS = [
 ["Sejuani","W","Winter's Wrath","Ralenti",true,true,true,""],
 ["Frost","Passif","Frost (ralenti objet)","Ralenti",true,true,true,""],
 // ---- SPECIAL : QSS oui, Cleanse non ----
-["Mordekaiser","R","Realm of Death","Spécial",true,false,false,"QSS sort du realm. Cleanse et Mikael ne marchent pas."],
+["Mordekaiser","R","Realm of Death","Spécial",false,false,false,"Depuis patch 14.8 : plus aucun cleanse ne sort du realm."],
 ["Illaoi","E","Test of Spirit","Spécial",true,false,false,"QSS enlève l'esprit. Cleanse/Mikael non."],
 ["Gangplank","E","Powder Keg (slow)","Ralenti",true,true,true,""],
 // ---- SUMMONER : Cleanse oui, QSS non ----
