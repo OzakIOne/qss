@@ -35,7 +35,7 @@ function render(){
     const [ch,key,name,type,qss,cl,mik,note] = s;
     const showNote = note && norm(note).replace(/[.\s]+$/,"") !== norm(type);
     const sub = showNote ? `<div class="s">${note}</div>` : "";
-    return `<div class="card"><div><div class="t">${ch} ${key} — ${name}</div>${sub}<div class="cc">${type}</div></div><div class="badges"><span class="b ${qss?"y":"n"}">QSS ${qss?"✓":"✗"}</span><span class="b ${cl?"y":"n"}">Cleanse ${cl?"✓":"✗"}</span><span class="b ${mik?"y":"n"}">Mikael ${mik?"✓":"✗"}</span></div></div>`;
+    return `<div class="card"><div><div class="t">${ch} ${key} — ${name}</div>${sub}<div class="cc">${type}</div></div><div class="badges"><span class="b ${qss?"y":"n"}">QSS ${qss?"✓":"✗"}</span><span class="b ${cl?"y":"n"}">Cleanse ${cl?"✓":"✗"}</span><span class="b ${mik?"y":"n"}">Mikael ${mik?"✓":"✗"}</span><button class="flag" data-i="${SPELLS.indexOf(s)}" title="Signaler une erreur sur ce sort" aria-label="Signaler une erreur">⚑</button></div></div>`;
   }).join("") || "<p>Aucun résultat.</p>";
 }
 render();
@@ -81,4 +81,11 @@ document.getElementById("rep-go").onclick = ()=>{
   const title = `[data] ${ch} ${key} — ${name}`;
   const body = `- Sort : ${ch} ${key} — ${name} (${type})\n- Actuel : QSS ${tick(qss)} / Cleanse ${tick(cl)} / Mikael ${tick(mik)}\n- Correction : ${fixes.join(", ")||"à préciser"}\n- Source : ${src||"à préciser"}\n- Détail : ${msg||"—"}`;
   open(`https://github.com/OzakIOne/qss/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`,"_blank");
+};
+list.onclick = e=>{
+  const b = e.target.closest(".flag");
+  if (!b) return;
+  rsp.value = repLabel(SPELLS[+b.dataset.i]);
+  repCur();
+  document.getElementById("report").scrollIntoView({behavior:"smooth"});
 };
