@@ -48,9 +48,23 @@
 <li><b>Mikael</b> = comme QSS mais <b>ne marche pas</b> sur Blind, Disarm, Nearsight (Teemo Q, Quinn Q, Graves W, Irelia R). Se lance sur allié.</li>
 </ul>
 </section>
+<section class="report" id="report">
+<h2>⚠ Signaler une erreur</h2>
+<label>Sort concerné
+<select id="rep-spell"></select>
+</label>
+<div class="rep-grid">
+<div><span>QSS <b id="cur-qss"></b></span><select id="rep-qss" aria-label="Correction QSS"><option value="">OK, correct</option><option value="1">Devrait être ✓</option><option value="0">Devrait être ✗</option></select></div>
+<div><span>Cleanse <b id="cur-cl"></b></span><select id="rep-cl" aria-label="Correction Cleanse"><option value="">OK, correct</option><option value="1">Devrait être ✓</option><option value="0">Devrait être ✗</option></select></div>
+<div><span>Mikael <b id="cur-mik"></b></span><select id="rep-mik" aria-label="Correction Mikael"><option value="">OK, correct</option><option value="1">Devrait être ✓</option><option value="0">Devrait être ✗</option></select></div>
+</div>
+<label>Source (lien wiki / patch)<input id="rep-src" type="url" placeholder="https://…"></label>
+<label>Détail (optionnel)<input id="rep-msg" type="text" placeholder="Vu en jeu, clip…"></label>
+<button id="rep-go" type="button">Ouvrir l'issue GitHub pré-remplie</button>
+</section>
 </main>
 
-<footer><p>Données simplifiées patch récent. En cas de doute : airborne / suppression / stase = non.</p><p><a class="issue" href="https://github.com/OzakIOne/qss/issues/new?title=%5Bdata%5D+%3Cchampion+sort%3E&body=%3CQuel+sort+est+faux+%3F%3E%0A%0A-%20Champion+%2F+sort+%3A+%0A-%20QSS+%3A+%E2%9C%93+%2F+%E2%9C%97%0A-%20Cleanse+%3A+%E2%9C%93+%2F+%E2%9C%97%0A-%20Mikael+%3A+%E2%9C%93+%2F+%E2%9C%97%0A-%20Source+%28wiki%2C+patch%29+%3A+%0A" target="_blank" rel="noopener">⚠ Signaler une erreur de sort</a></p></footer>
+<footer><p>Données simplifiées patch récent. En cas de doute : airborne / suppression / stase = non.</p><p><a class="issue" href="#report">⚠ Signaler une erreur de sort</a></p></footer>
 
 <script src="data.js"></script>
 <script src="app.js"></script>

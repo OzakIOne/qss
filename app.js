@@ -39,3 +39,29 @@ function render(){
   }).join("") || "<p>Aucun résultat.</p>";
 }
 render();
+
+const rsp = document.getElementById("rep-spell");
+SPELLS.forEach((s,i)=>{
+  const [ch,key,name] = s;
+  const o = document.createElement("option");
+  o.value = i; o.textContent = `${ch} ${key} — ${name}`;
+  rsp.appendChild(o);
+});
+const tick = v => v ? "✓" : "✗";
+function repCur(){
+  const [,,, ,qss,cl,mik] = SPELLS[+rsp.value];
+  document.getElementById("cur-qss").textContent = tick(qss);
+  document.getElementById("cur-cl").textContent = tick(cl);
+  document.getElementById("cur-mik").textContent = tick(mik);
+}
+rsp.onchange = repCur; repCur();
+document.getElementById("rep-go").onclick = ()=>{
+  const [ch,key,name,type,qss,cl,mik] = SPELLS[+rsp.value];
+  const want = (id,label)=>{ const v=document.getElementById(id).value; return v==="" ? null : `${label} devrait être ${v==="1"?"✓":"✗"}`; };
+  const fixes = [want("rep-qss","QSS"),want("rep-cl","Cleanse"),want("rep-mik","Mikael")].filter(Boolean);
+  const src = document.getElementById("rep-src").value.trim();
+  const msg = document.getElementById("rep-msg").value.trim();
+  const title = `[data] ${ch} ${key} — ${name}`;
+  const body = `- Sort : ${ch} ${key} — ${name} (${type})\n- Actuel : QSS ${tick(qss)} / Cleanse ${tick(cl)} / Mikael ${tick(mik)}\n- Correction : ${fixes.join(", ")||"à préciser"}\n- Source : ${src||"à préciser"}\n- Détail : ${msg||"—"}`;
+  open(`https://github.com/OzakIOne/qss/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`,"_blank");
+};
