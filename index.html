@@ -51,12 +51,13 @@
 <section class="report" id="report">
 <h2>⚠ Signaler une erreur</h2>
 <label>Sort concerné
-<select id="rep-spell"></select>
+<input id="rep-spell" list="rep-list" placeholder="Tape un champion ou sort…" autocomplete="off">
+<datalist id="rep-list"></datalist>
 </label>
 <div class="rep-grid">
-<div><span>QSS <b id="cur-qss"></b></span><select id="rep-qss" aria-label="Correction QSS"><option value="">OK, correct</option><option value="1">Devrait être ✓</option><option value="0">Devrait être ✗</option></select></div>
-<div><span>Cleanse <b id="cur-cl"></b></span><select id="rep-cl" aria-label="Correction Cleanse"><option value="">OK, correct</option><option value="1">Devrait être ✓</option><option value="0">Devrait être ✗</option></select></div>
-<div><span>Mikael <b id="cur-mik"></b></span><select id="rep-mik" aria-label="Correction Mikael"><option value="">OK, correct</option><option value="1">Devrait être ✓</option><option value="0">Devrait être ✗</option></select></div>
+<div><span>QSS <b id="cur-qss"></b></span><select id="rep-qss" aria-label="Correction QSS"></select></div>
+<div><span>Cleanse <b id="cur-cl"></b></span><select id="rep-cl" aria-label="Correction Cleanse"></select></div>
+<div><span>Mikael <b id="cur-mik"></b></span><select id="rep-mik" aria-label="Correction Mikael"></select></div>
 </div>
 <label>Source (lien wiki / patch)<input id="rep-src" type="url" placeholder="https://…"></label>
 <label>Détail (optionnel)<input id="rep-msg" type="text" placeholder="Vu en jeu, clip…"></label>

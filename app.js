@@ -41,22 +41,39 @@ function render(){
 render();
 
 const rsp = document.getElementById("rep-spell");
-SPELLS.forEach((s,i)=>{
-  const [ch,key,name] = s;
+const rlist = document.getElementById("rep-list");
+const repLabel = s => `${s[0]} ${s[1]} — ${s[2]}`;
+SPELLS.forEach(s=>{
   const o = document.createElement("option");
-  o.value = i; o.textContent = `${ch} ${key} — ${name}`;
-  rsp.appendChild(o);
+  o.value = repLabel(s);
+  rlist.appendChild(o);
 });
+let repIdx = 0;
 const tick = v => v ? "✓" : "✗";
+function repFix(id, cur){
+  const sel = document.getElementById(id);
+  sel.innerHTML = "";
+  const none = document.createElement("option");
+  none.value = ""; none.textContent = "—";
+  const opp = document.createElement("option");
+  opp.value = cur ? "0" : "1";
+  opp.textContent = cur ? "Devrait être ✗" : "Devrait être ✓";
+  sel.append(none, opp);
+}
 function repCur(){
-  const [,,, ,qss,cl,mik] = SPELLS[+rsp.value];
+  const hit = SPELLS.findIndex(s=>repLabel(s)===rsp.value.trim());
+  if (hit < 0) return;
+  repIdx = hit;
+  const [,,, ,qss,cl,mik] = SPELLS[repIdx];
   document.getElementById("cur-qss").textContent = tick(qss);
   document.getElementById("cur-cl").textContent = tick(cl);
   document.getElementById("cur-mik").textContent = tick(mik);
+  repFix("rep-qss",qss); repFix("rep-cl",cl); repFix("rep-mik",mik);
 }
-rsp.onchange = repCur; repCur();
+rsp.value = repLabel(SPELLS[0]);
+rsp.oninput = repCur; repCur();
 document.getElementById("rep-go").onclick = ()=>{
-  const [ch,key,name,type,qss,cl,mik] = SPELLS[+rsp.value];
+  const [ch,key,name,type,qss,cl,mik] = SPELLS[repIdx];
   const want = (id,label)=>{ const v=document.getElementById(id).value; return v==="" ? null : `${label} devrait être ${v==="1"?"✓":"✗"}`; };
   const fixes = [want("rep-qss","QSS"),want("rep-cl","Cleanse"),want("rep-mik","Mikael")].filter(Boolean);
   const src = document.getElementById("rep-src").value.trim();
