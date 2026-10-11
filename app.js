@@ -33,7 +33,9 @@ function render(){
   count.textContent = out.length + " sort(s)";
   list.innerHTML = out.map(s=>{
     const [ch,key,name,type,qss,cl,mik,note] = s;
-    return `<div class="card"><div><div class="t">${ch} ${key} — ${name}</div><div class="s">${note||""}</div><div class="cc">${type}</div></div><div class="badges"><span class="b ${qss?"y":"n"}">QSS ${qss?"✓":"✗"}</span><span class="b ${cl?"y":"n"}">Cleanse ${cl?"✓":"✗"}</span><span class="b ${mik?"y":"n"}">Mikael ${mik?"✓":"✗"}</span></div></div>`;
+    const showNote = note && norm(note).replace(/[.\s]+$/,"") !== norm(type);
+    const sub = showNote ? `<div class="s">${note}</div>` : "";
+    return `<div class="card"><div><div class="t">${ch} ${key} — ${name}</div>${sub}<div class="cc">${type}</div></div><div class="badges"><span class="b ${qss?"y":"n"}">QSS ${qss?"✓":"✗"}</span><span class="b ${cl?"y":"n"}">Cleanse ${cl?"✓":"✗"}</span><span class="b ${mik?"y":"n"}">Mikael ${mik?"✓":"✗"}</span></div></div>`;
   }).join("") || "<p>Aucun résultat.</p>";
 }
 render();
